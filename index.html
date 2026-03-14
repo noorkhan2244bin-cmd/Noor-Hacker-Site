@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Hacker - Premium Toolkit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0F1F;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6C5CE7, #00D2FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            background: #0A0F1F;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(108, 92, 231, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(108, 92, 231, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            color: #94A3B8;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .login-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(108, 92, 231, 0.5);
+        }
+
+        .lock-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6C5CE7, #00D2FF);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+        }
+
+        .lock-icon i {
+            font-size: 30px;
+            color: white;
+        }
+
+        .login-card h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6C5CE7;
+            font-size: 1.1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(108, 92, 231, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #6C5CE7;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+        }
+
+        .input-group input::placeholder {
+            color: #64748B;
+        }
+
+        .gradient-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6C5CE7, #00D2FF);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .gradient-btn:hover::before {
+            left: 100%;
+        }
+
+        .gradient-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.5);
+        }
+
+        .contact-info {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+        }
+
+        .contact-info i {
+            color: #00D2FF;
+        }
+
+        .admin-login-btn {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid #FFD700;
+            border-radius: 12px;
+            color: #FFD700;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-login-btn:hover {
+            background: #FFD700;
+            color: #0A0F1F;
+            transform: scale(1.02);
+        }
+
+        /* Dashboard Styles */
+        .dashboard-container {
+            display: none;
+            min-height: 100vh;
+            background: #0F172A;
+        }
+
+        .top-nav {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(108, 92, 231, 0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-icon {
+            font-size: 1.5rem;
+            color: #6C5CE7;
+            cursor: pointer;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .settings-container {
+            position: relative;
+        }
+
+        .settings-btn {
+            background: rgba(108, 92, 231, 0.2);
+            border: 2px solid #6C5CE7;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .settings-btn:hover {
+            background: #6C5CE7;
+            transform: rotate(90deg);
+        }
+
+        .search-container {
+            margin-top: 100px;
+            padding: 20px 30px;
+        }
+
+        .search-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6C5CE7;
+            font-size: 1.2rem;
+            z-index: 1;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 18px 18px 18px 50px;
+            background: #1E293B;
+            border: 2px solid rgba(108, 92, 231, 0.3);
+            border-radius: 16px;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #6C5CE7;
+            box-shadow: 0 0 30px rgba(108, 92, 231, 0.3);
+        }
+
+        .search-btn {
+            width: 120px;
+            border-radius: 16px;
+            border: none;
+            background: linear-gradient(135deg, #6C5CE7, #00D2FF);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tools-section {
+            padding: 20px 30px 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 2rem;
+        }
+
+        .section-title i {
+            color: #FFD700;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: #1E293B;
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6C5CE7, #00D2FF);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(108, 92, 231, 0.3);
+            border-color: #6C5CE7;
+        }
+
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(0, 210, 255, 0.2));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: #6C5CE7;
+            transition: all 0.4s ease;
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #6C5CE7, #00D2FF);
+            color: white;
+        }
+
+        .tool-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .tool-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(108, 92, 231, 0.2);
+            border-radius: 30px;
+            color: #00D2FF;
+            font-size: 0.9rem;
+            border: 1px solid #6C5CE7;
+        }
+
+        .tool-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #6C5CE7, #00D2FF);
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .tool-card:hover .tool-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            display: none;
+            min-height: 100vh;
+            background: #0F172A;
+            padding: 30px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #1E293B;
+            border-radius: 16px;
+            border: 1px solid #6C5CE7;
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-header h1 i {
+            color: #FFD700;
+        }
+
+        .back-btn {
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid #6C5CE7;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #6C5CE7;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .admin-card {
+            background: #1E293B;
+            border-radius: 24px;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            overflow: hidden;
+        }
+
+        .admin-card-header {
+            padding: 20px;
+            background: rgba(108, 92, 231, 0.1);
+            border-bottom: 1px solid rgba(108, 92, 231, 0.3);
+        }
+
+        .admin-card-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .admin-card-body {
+            padding: 20px;
+        }
+
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .admin-form input, .admin-form select {
+            padding: 12px;
+            background: #0F172A;
+            border: 2px solid rgba(108, 92, 231, 0.3);
+            border-radius: 8px;
+            color: white;
+        }
+
+        .admin-form input:focus {
+            outline: none;
+            border-color: #6C5CE7;
+        }
+
+        .users-list {
+            margin-top: 20px;
+        }
+
+        .user-item {
+            background: #0F172A;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info i {
+            font-size: 1.5rem;
+            color: #6C5CE7;
+        }
+
+        .delete-user {
+            padding: 8px 15px;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #EF4444;
+            color: #EF4444;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .delete-user:hover {
+            background: #EF4444;
+            color: white;
+        }
+
+        .success-message {
+            padding: 10px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10B981;
+            color: #10B981;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .admin-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .admin-tool-item {
+            background: #0F172A;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .admin-tool-item i {
+            font-size: 2rem;
+            color: #6C5CE7;
+            margin-bottom: 10px;
+        }
+
+        .delete-tool {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #EF4444;
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1E293B;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            border: 1px solid #6C5CE7;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-wrapper">
+            <div class="header">
+                <h1 class="gradient-text">NOOR HACKER</h1>
+                <p class="tagline">Premium Digital Toolkit</p>
+            </div>
+
+            <div class="login-card">
+                <div class="lock-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h2>USER LOGIN</h2>
+                
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" id="loginUsername">
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-key"></i>
+                    <input type="password" placeholder="Password" id="loginPassword">
+                </div>
+                
+                <button class="gradient-btn" onclick="userLogin()">
+                    <span>ACCESS TOOLKIT</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <button class="admin-login-btn" onclick="showAdminModal()">
+                    <i class="fas fa-crown"></i>
+                    ADMIN LOGIN
+                </button>
+
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <span>03353578269</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-crown" style="color: #FFD700;"></i> Admin Login</h2>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Username" id="adminUsername" value="Noor Hacker" readonly>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-key"></i>
+                <input type="password" placeholder="Password" id="adminPassword">
+            </div>
+            <button class="gradient-btn" onclick="adminLogin()">
+                <i class="fas fa-sign-in-alt"></i>
+                Login as Admin
+            </button>
+            <button class="admin-login-btn" style="margin-top: 10px;" onclick="closeAdminModal()">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <!-- User Dashboard -->
+    <div class="dashboard-container" id="userDashboard">
+        <nav class="top-nav">
+            <div class="nav-left">
+                <i class="fas fa-bars menu-icon"></i>
+                <span class="logo gradient-text">NOOR HACKER</span>
+            </div>
+            <div class="nav-right">
+                <div class="settings-container">
+                    <button class="settings-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="search-container">
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search tools..." class="search-input" id="searchInput" onkeyup="searchTools()">
+                <button class="search-btn">Search</button>
+            </div>
+        </div>
+
+        <div class="tools-section">
+            <h2 class="section-title">
+                <span class="gradient-text">PREMIUM TOOLS</span>
+                <i class="fas fa-star"></i>
+            </h2>
+            
+            <div class="tools-grid" id="toolsGrid"></div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h1>
+                <i class="fas fa-crown" style="color: #FFD700;"></i>
+                <span class="gradient-text">Admin Dashboard</span>
+            </h1>
+            <button class="back-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+
+        <div class="admin-grid">
+            <!-- Add Tool Section -->
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h2><i class="fas fa-plus-circle" style="color: #6C5CE7;"></i> Add New Tool</h2>
+                </div>
+                <div class="admin-card-body">
+                    <div class="success-message" id="toolSuccess">Tool added successfully!</div>
+                    <form class="admin-form" onsubmit="addTool(event)">
+                        <input type="text" placeholder="Tool Name" id="toolName" required>
+                        <select id="toolIcon" required>
+                            <option value="">Select Icon</option>
+                            <option value="fa-solid fa-key">🔑 Key</option>
+                            <option value="fa-solid fa-lock">🔒 Lock</option>
+                            <option value="fa-solid fa-shield">🛡️ Shield</option>
+                            <option value="fa-solid fa-code">💻 Code</option>
+                            <option value="fa-solid fa-database">🗄️ Database</option>
+                            <option value="fa-solid fa-network-wired">🌐 Network</option>
+                            <option value="fa-solid fa-bug">🐛 Bug</option>
+                        </select>
+                        <input type="url" placeholder="Tool Link" id="toolLink" required>
+                        <button type="submit" class="gradient-btn">
+                            <i class="fas fa-plus"></i> Add Tool
+                        </button>
+                    </form>
+
+                    <div class="admin-tools-grid" id="adminToolsList"></div>
+                </div>
+            </div>
+
+            <!-- User Management Section -->
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h2><i class="fas fa-users" style="color: #6C5CE7;"></i> Manage Users</h2>
+                </div>
+                <div class="admin-card-body">
+                    <div class="success-message" id="userSuccess">User created successfully!</div>
+                    <form class="admin-form" onsubmit="createUser(event)">
+                        <input type="text" placeholder="Username" id="newUsername" required>
+                        <input type="password" placeholder="Password" id="newPassword" required>
+                        <select id="userRole">
+                            <option value="user">Regular User</option>
+                            <option value="premium">Premium User</option>
+                        </select>
+                        <button type="submit" class="gradient-btn">
+                            <i class="fas fa-user-plus"></i> Create User
+                        </button>
+                    </form>
+
+                    <div class="users-list" id="usersList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize data
+        let tools = JSON.parse(localStorage.getItem('tools')) || [
+            { id: 1, name: "Password Generator", icon: "fa-solid fa-key", link: "#" },
+            { id: 2, name: "Encryption Tool", icon: "fa-solid fa-lock", link: "#" },
+            { id: 3, name: "Network Scanner", icon: "fa-solid fa-network-wired", link: "#" },
+            { id: 4, name: "Hash Cracker", icon: "fa-solid fa-hashtag", link: "#" },
+            { id: 5, name: "Code Obfuscator", icon: "fa-solid fa-code", link: "#" }
+        ];
+
+        let users = JSON.parse(localStorage.getItem('users')) || [
+            { id: 1, username: "john", password: "123", role: "user" },
+            { id: 2, username: "jane", password: "456", role: "premium" }
+        ];
+
+        // Login Functions
+        function showAdminModal() {
+            document.getElementById('adminModal').classList.add('show');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.remove('show');
+        }
+
+        function adminLogin() {
+            const password = document.getElementById('adminPassword').value;
+            
+            if(password === '1122') {
+                closeAdminModal();
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                displayAdminTools();
+                displayAdminUsers();
+            } else {
+                alert('Invalid password! Admin password is: 1122');
+            }
+        }
+
+        function userLogin() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Check if user exists
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if(user) {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('userDashboard').style.display = 'block';
+                displayTools();
+            } else {
+                alert('Invalid credentials! Try: john / 123');
+            }
+        }
+
+        function logout() {
+            document.getElementById('userDashboard').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        }
+
+        // Display Tools
+        function displayTools() {
+            const grid = document.getElementById('toolsGrid');
+            grid.innerHTML = '';
+            
+            tools.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'tool-card';
+                card.innerHTML = `
+                    <div class="tool-icon">
+                        <i class="${tool.icon}"></i>
+                    </div>
+                    <h3 class="tool-name">${tool.name}</h3>
+                    <span class="tool-badge">Premium</span>
+                    <a href="${tool.link}" class="tool-link">Launch Tool</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Search Tools
+        function searchTools() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = tools.filter(tool => 
+                tool.name.toLowerCase().includes(searchTerm)
+            );
+            
+            const grid = document.getElementById('toolsGrid');
+            grid.innerHTML = '';
+            
+            filtered.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'tool-card';
+                card.innerHTML = `
+                    <div class="tool-icon">
+                        <i class="${tool.icon}"></i>
+                    </div>
+                    <h3 class="tool-name">${tool.name}</h3>
+                    <span class="tool-badge">Premium</span>
+                    <a href="${tool.link}" class="tool-link">Launch Tool</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Admin Functions
+        function addTool(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('toolName').value;
+            const icon = document.getElementById('toolIcon').value;
+            const link = document.getElementById('toolLink').value;
+            
+            if(name && icon && link) {
+                const newTool = {
+                    id: tools.length + 1,
+                    name: name,
+                    icon: icon,
+                    link: link
+                };
+                
+                tools.push(newTool);
+                localStorage.setItem('tools', JSON.stringify(tools));
+                
+                // Show success message
+                const success = document.getElementById('toolSuccess');
+                success.style.display = 'block';
+                setTimeout(() => success.style.display = 'none', 2000);
+                
+                // Reset form
+                document.getElementById('toolName').value = '';
+                document.getElementById('toolIcon').value = '';
+                document.getElementById('toolLink').value = '';
+                
+                // Update displays
+                displayAdminTools();
+                displayTools();
+            }
+        }
+
+        function deleteTool(id) {
+            if(confirm('Delete this tool?')) {
+                tools = tools.filter(t => t.id !== id);
+                localStorage.setItem('tools', JSON.stringify(tools));
+                displayAdminTools();
+                displayTools();
+            }
+        }
+
+        function createUser(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+            const role = document.getElementById('userRole').value;
+            
+            if(username && password) {
+                // Check if username exists
+                if(users.some(u => u.username === username)) {
+                    alert('Username already exists!');
+                    return;
+                }
+                
+                const newUser = {
+                    id: users.length + 1,
+                    username: username,
+                    password: password,
+                    role: role
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Show success message
+                const success = document.getElementById('userSuccess');
+                success.style.display = 'block';
+                setTimeout(() => success.style.display = 'none', 2000);
+                
+                // Reset form
+                document.getElementById('newUsername').value = '';
+                document.getElementById('newPassword').value = '';
+                
+                // Update users list
+                displayAdminUsers();
+            }
+        }
+
+        function deleteUser(id) {
+            if(confirm('Delete this user?')) {
+                users = users.filter(u => u.id !== id);
+                localStorage.setItem('users', JSON.stringify(users));
+                displayAdminUsers();
+            }
+        }
+
+        function displayAdminTools() {
+            const list = document.getElementById('adminToolsList');
+            list.innerHTML = '';
+            
+            tools.forEach(tool => {
+                const div = document.createElement('div');
+                div.className = 'admin-tool-item';
+                div.innerHTML = `
+                    <button class="delete-tool" onclick="deleteTool(${tool.id})">×</button>
+                    <i class="${tool.icon}"></i>
+                    <p>${tool.name}</p>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function displayAdminUsers() {
+            const list = document.getElementById('usersList');
+            list.innerHTML = '';
+            
+            users.forEach(user => {
+                const div = document.createElement('div');
+                div.className = 'user-item';
+                div.innerHTML = `
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <div>
+                            <strong>${user.username}</strong>
+                            <br>
+                            <small>${user.role} • Pass: ${user.password}</small>
+                        </div>
+                    </div>
+                    <button class="delete-user" onclick="deleteUser(${user.id})">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        // Initialize displays
+        displayTools();
+    </script>
+</body>
+</html>
